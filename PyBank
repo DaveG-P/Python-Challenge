@@ -1,1 +1,43 @@
+import csv
+import os
+file_to_load = "UCBERKDATA/budget_data.csv"
+with open(file_to_load) as bd:
+    reader = csv.reader(bd)
+    next(reader) 
+    revenue = []
+    date = []
+    rev_change = []
+    for row in reader:
+        revenue.append(float(row[1]))
+        date.append(row[0])
+    print("Financial Analysis")
+    print("-----------------------------------")
+    print("Total Months:", len(date))
+    print("Total Revenue: $", sum(revenue))
+
+    for i in range(1,len(revenue)):
+        revChange.append(revenue[i] - revenue[i-1])   
+        avgRevChange = sum(revChange)/len(revChange)
+
+        maxRevChange = max(revChange)
+
+        minRevChange = min(revChange)
+
+        maxRevChange_date = str(date[revChange.index(max(revChange))])
+        minRevChange_date = str(date[revChange.index(min(revChange))])
+    print("Average Revenue Change: $", round(avgRevChange))
+    print("Greatest Increase in Revenue:", maxRevChange_date,"($", maxRevChange,")")
+    print("Greatest Decrease in Revenue:", minRevChange_date,"($", minRevChange,")")
+
+OUTPUT
+
+Financial Analysis
+----------------------
+Total Months: 41
+Total Revenue: $ 29359512.0
+Average Revenue Change: $ -266461
+Average Revenue Change: $ -266461
+Greatest Increase in Revenue: Jan-16 ($ 1837235.0 )
+Greatest Decrease in Revenue: Oct-12 ($ -10656620.0 )
+
 
