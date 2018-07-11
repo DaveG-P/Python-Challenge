@@ -1,1 +1,57 @@
+import csv
+import os
+# Analysis
+file = os.path.join("Data", "election_data.csv")
+output = os.path.join("Python-Challenge", "PyPoll.txt")
 
+totalVotes = 0
+Candidates = []
+Votes = {}
+Winner = ""
+Winning_Votes = 0
+
+with open(file) as election:
+  header = next(reader)
+  reader = csv.reader(election)
+  
+  for row in reader:
+    totalVotes = totalVotes + 1
+    Names = row[2]
+    
+    if Names not in Candidates:
+      Candidates.append(Names)
+      Votes[Names] = 0
+      Votes[Names] = Votes[Names] + 1
+     
+# Output
+output = os.path.join("Python-Challenge", "PyPoll.txt")
+with open(output, 'w') as results:
+  election_Results = (
+  f"\nElection Results
+  f"\n-----------------------"
+  f"\nTotal Votes {totalVotes}"
+  f"\n--------------------------")
+  print("election_Results")
+  
+  results.write(election_Results)
+  for candidate in Votes:
+    votes_count = Votes.get(candidate)
+    vote_percentage = float(votes_count) / float(totalVotes) * 100
+    
+    if (votes_count > Winning_Votes):
+      Winning_Votes = votes_count
+      Winner = candidate
+      
+    VoterOutput = f"{candidate}: {vote_percentage} {votes_count}"
+      print("voter_output")
+      
+      results.write(voter_output)
+      
+ Summary_of_Winner = (
+ f"\n----------------------"
+ f"\nWinner: {Winner}"
+ f"\n----------------------")
+ print(Summary_of_Winner)
+ 
+ results.write(Summary_of_Winner)
+ 
